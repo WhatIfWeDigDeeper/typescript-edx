@@ -1,7 +1,7 @@
 # typescript-edx
 For Microsoft EdX course [Introduction to TypeScript 2](https://courses.edx.org/courses/course-v1:Microsoft+DEV273x+2T2018/course/)
 
-## Module 2
+# Module 2
 
 Optional properties, like an "options bag"
 
@@ -105,4 +105,22 @@ A class represents two things:
     console.log(greeter2.greet());
 
 "variable will hold the class itself, or said another way its constructor function. Here we use typeof Greeter, that is "give me the type of the Greeter class itself" rather than the instance type"
+
+### Type Compatibility
+
+"The basic rule for TypeScript's structural type system is that x is compatible with y if y has at least the same members as x"
+
+### Comparing functions
+Compatible if at least the same number of parameters and return type.  Can have more parameters.
+
+### Comparing Classes
+structural, including private/protected, but ignores static members.
+
+### Demo type inference
+
+    const anyString: any = "stringy";
+    const asLength: number = (anyString as string).length;
+    // or
+    const angleBracketLength: number = (<string>anyString).length;
+
 
