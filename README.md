@@ -23,6 +23,8 @@ To get around the object literal restriction, you may use a string index propert
         [propName: string]: any;
     }
 
+Interfaces are TypeScript's way of describing a complex object containing many types. They essentially describe the "shape" of an object, which can be especially useful when working with complicated data contracts, as it ensures not only that each property within is of the correct type, but that it exists as well.
+
 ### Constructor Interface
 
     interface ClockConstructor {
@@ -122,5 +124,84 @@ structural, including private/protected, but ignores static members.
     const asLength: number = (anyString as string).length;
     // or
     const angleBracketLength: number = (<string>anyString).length;
+
+### Functions and Function Types
+
+Any optional parameters must follow required parameters.  Default and optional parameters share the same type.
+
+    function buildName(firstName: string, lastName?: string) {
+      // ...
+    }
+
+    // and
+
+    function buildName(firstName: string, lastName = "Smith") {
+      // ...
+    }
+
+    // share the same type
+    (firstName: string, lastName?: string) => string 
+
+
+### Rest Parameters
+
+    function buildName(firstName: string, ...restOfName: string[]) {}
+
+
+### this
+
+A top-level non-method syntax call like this will use window for `this`. (Note: under strict mode, this will be `undefined` rather than window).
+
+Arrow functions capture the `this` where the function is created rather than where it is invoked
+
+use `--noImplicitThis` flag to the compiler to warn of incorrect this usage
+
+### this parameter
+
+    let deck: Deck = {
+        suits: ["H","S","C","D"],
+        // NOTE: The function now explicitly specifies that its callee must be of type Deck
+        createCardPicker: function(this: Deck) {
+            return () => {
+                let pickedCard = Math.floor(Math.random() * 52);
+                let pickedSuit = Math.floor(pickedCard / 13);
+
+                // this is of type deck
+                return {suit: this.suits[pickedSuit], card: pickedCard % 13};
+            }
+        }
+    }
+
+    deck.createCardPicker();
+
+
+### this in callbacks
+
+    interface UIElement {
+      addClickListener(onclick: (this: void, e: Event) => void): void;
+    }
+
+    class Handler {
+        onClickGood(this: void, e: Event) {...}
+    }
+    let h = new Handler();
+    uiElement.addClickListener(h.onClickGood);
+
+    // or use arrow fns to still use this.
+    onClickGood = (e: Event) => { this.info = e.message }
+
+arrow functions don't capture `this`, so you can always pass them to something that expects `this: void`. The downside is that one arrow function is created per object of type `Handler`. Methods, on the other hand, are only created once and attached to Handler's prototype. They are shared between all objects of type `Handler`.
+
+
+### Function Overloads
+
+its customary to order overloads from most specific to least specific.
+
+    function pickCard(x: {suit: string; card: number; }[]): number;
+    function pickCard(x: number): {suit: string; card: number; };
+    function pickCard(x): any {
+
+
+
 
 
