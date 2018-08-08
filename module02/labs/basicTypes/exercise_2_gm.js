@@ -1,3 +1,4 @@
+"use strict";
 var __generator = (this && this.__generator) || function (thisArg, body) {
     var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
     return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
@@ -25,6 +26,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var Colours;
 (function (Colours) {
     Colours[Colours["Green"] = 0] = "Green";
@@ -42,6 +44,7 @@ var ColourChanger = /** @class */ (function () {
     };
     return ColourChanger;
 }());
+//function* range(start: number, finish: number): IterableIterator<number> {
 function range(start, finish) {
     var i;
     return __generator(this, function (_a) {
@@ -86,3 +89,4 @@ for (var _i = 0, _a = range(0, 3); _i < _a.length; _i++) {
     document.body.appendChild(button);
     document.body.appendChild(div);
 }
+exports.default = {};

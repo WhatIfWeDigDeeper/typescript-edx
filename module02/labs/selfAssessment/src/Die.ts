@@ -13,7 +13,7 @@ export interface DisplayValue {
 }
 
 export class Die {
-    public static DieValue = DieValue;
+    // public static DieValue = DieValue;
     public static randomRoll(min: number = 1, max: number = 6): number {
         min = Math.ceil(min);
         max = Math.floor(max);

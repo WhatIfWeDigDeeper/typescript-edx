@@ -16,7 +16,8 @@ class ColourChanger {
     }
 }
 
-function* range(start: number, finish: number): any {   // IterableIterator<number> {
+//function* range(start: number, finish: number): IterableIterator<number> {
+function* range(start: number, finish: number): any {
     for(let i = start; i <= finish; i++) {
         yield i;
     }
