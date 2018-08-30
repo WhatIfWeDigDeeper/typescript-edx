@@ -50,13 +50,12 @@ class Mover {
     }
 }
 
-@animated
+// @animated
 class MovingElement implements Rotator, Mover {
-
-    rotate(elem: HTMLElement) {}
-    rotateBack(elem: HTMLElement) {}
-    move(elem: HTMLElement) {}
-    moveBack(elem: HTMLElement) {}
+    rotate: (elem: HTMLElement) => any
+    rotateBack: (elem: HTMLElement) => any
+    move: (elem: HTMLElement) => any
+    moveBack: (elem: HTMLElement) => any
 
     animated: false;
 

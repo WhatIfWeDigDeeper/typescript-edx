@@ -1,0 +1,35 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended",
+        "tslint-plugin-prettier",
+        "tslint-config-prettier"
+    ],
+    "jsRules": {},
+    "rules": {
+        "prettier": [
+            true,
+            {
+                "tabWidth": 4,
+                "trailingComma": "es5"
+            }
+        ],
+        "variable-name": [
+            true,
+            "ban-keywords",
+            "check-format",
+            "allow-leading-underscore"
+        ],
+        "interface-name": [
+            true,
+            "never-prefix"
+        ]
+    },
+    "rulesDirectory": [],
+    "typedef": [
+        true,
+        "call-signature",
+        "parameter",
+        "member-variable-declaration"
+    ]
+}

@@ -1,79 +1,51 @@
-class GenericClass<T> {
-    private val: T;
-    setVal(val: T): void {
+class GenericClass {
+    setVal(val) {
         this.val = val;
     }
-    getVal(): T {
+    getVal() {
         return this.val;
     }
 }
-
 // predicate return type
 // Can not check HTMLElement with typeof operator
-function isHTMLElement (x: any): x is HTMLElement {
+function isHTMLElement(x) {
     return x.style !== undefined;
-};
-
-function convertElement(elem: Element | HTMLElement): HTMLElement {
+}
+;
+function convertElement(elem) {
     return isHTMLElement(elem)
         ? elem
-        : <HTMLElement>elem;
+        : elem;
 }
-
-function standardizeElements(elemAry: Array<any>): Array<HTMLElement> {
+function standardizeElements(elemAry) {
     for (let elem of elemAry) {
         convertElement(elem);
     }
     return elemAry;
 }
-
-function animated(constructor: Function) {
+function animated(constructor) {
     constructor.prototype.animated = true;
     return constructor;
 }
-
-function getAvatar_Promise(elem: HTMLElement) {
-    fetch('https://uinames.com/api/')
-        .then((response) => (response.json()))
-        .then((resp) => {
-            console.log(resp.name);
-            const avatar = `https://robohash.org/set_set3/${resp.name}?size=60x60`; 
-            elem.style.backgroundImage = `url("${avatar}")`;
-            document.body.appendChild(elem);
-        });
-}
-
 class Rotator {
-    rotate(elem: HTMLElement) {
+    rotate(elem) {
         elem.style.transform = "rotate(-315deg)";
     }
-    rotateBack(elem: HTMLElement) {
+    rotateBack(elem) {
         elem.style.transform = "";
     }
 }
-
 class Mover {
-    move(elem: HTMLElement) {
+    move(elem) {
         elem.style.transform = "translateX(50px)";
     }
-    moveBack(elem: HTMLElement) {
+    moveBack(elem) {
         elem.style.transform = "";
     }
 }
-
 // @animated
-class MovingElement implements Rotator, Mover {
-
-    rotate(elem: HTMLElement) {}
-    rotateBack(elem: HTMLElement) {}
-    move(elem: HTMLElement) {}
-    moveBack(elem: HTMLElement) {}
-
-    animated: false;
-
-    element: HTMLElement;
-
-    constructor(elem: HTMLElement) {
+class MovingElement {
+    constructor(elem) {
         elem.onmousedown = () => {
             this.move(elem);
         };
@@ -92,39 +64,31 @@ class MovingElement implements Rotator, Mover {
         this.element = elem;
     }
 }
-
-function applyMixins(derivedClass: any, baseClasses: any[]) {
+function applyMixins(derivedClass, baseClasses) {
     baseClasses.forEach(baseClass => {
         Object.getOwnPropertyNames(baseClass.prototype).forEach(name => {
             derivedClass.prototype[name] = baseClass.prototype[name];
         });
     });
 }
-
 applyMixins(MovingElement, [Mover, Rotator]);
-
-let elem1 = new GenericClass<Element>();
-let elem2 = new GenericClass<HTMLElement>();
-let elem3 = new GenericClass<Element>();
-
+let elem1 = new GenericClass();
+let elem2 = new GenericClass();
+let elem3 = new GenericClass();
 elem1.setVal(document.createElement("div"));
 elem2.setVal(document.createElement("div"));
 elem3.setVal(document.createElement("div"));
-
 let elemAry = [
     elem1.getVal(),
     elem2.getVal(),
     elem3.getVal()
 ];
-
 for (let elem of standardizeElements(elemAry)) {
     elem.style.width = "60px";
     elem.style.height = "60px";
     elem.style.backgroundColor = "green";
     elem.style.margin = "5px";
     let elemClass = new MovingElement(elem);
-    // document.body.appendChild(elemClass.element);
-    getAvatar_Promise(elemClass.element);
+    document.body.appendChild(elemClass.element);
 }
-
-
+//# sourceMappingURL=advancedTypeScriptLab.js.map

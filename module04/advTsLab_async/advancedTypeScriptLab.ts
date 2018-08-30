@@ -32,16 +32,14 @@ function animated(constructor: Function) {
     return constructor;
 }
 
-function getAvatar_Promise(elem: HTMLElement) {
-    fetch('https://uinames.com/api/')
-        .then((response) => (response.json()))
-        .then((resp) => {
-            console.log(resp.name);
-            const avatar = `https://robohash.org/set_set3/${resp.name}?size=60x60`; 
-            elem.style.backgroundImage = `url("${avatar}")`;
-            document.body.appendChild(elem);
-        });
-}
+async function getAvatar_Async(elem: HTMLElement) {
+    const uiName = await fetch('https://uinames.com/api/');
+    const resp = await uiName.json();
+    console.log(resp.name);
+    const avatar = `https://robohash.org/set_set3/${resp.name}?size=60x60`; 
+    elem.style.backgroundImage = `url("${avatar}")`;
+    document.body.appendChild(elem);
+};
 
 class Rotator {
     rotate(elem: HTMLElement) {
@@ -123,8 +121,7 @@ for (let elem of standardizeElements(elemAry)) {
     elem.style.backgroundColor = "green";
     elem.style.margin = "5px";
     let elemClass = new MovingElement(elem);
-    // document.body.appendChild(elemClass.element);
-    getAvatar_Promise(elemClass.element);
+    getAvatar_Async(elemClass.element);
 }
 
 

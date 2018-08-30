@@ -8,6 +8,18 @@
       "script": "build",
       "path": "module02/labs/selfAssessment/",
       "problemMatcher": []
+    },
+    {
+      "type": "typescript",
+      "tsconfig": "module04/advTsLab_animated/tsconfig.json",
+      "option": "watch",
+      "problemMatcher": [
+        "$tsc-watch"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
     }
   ]
 }
