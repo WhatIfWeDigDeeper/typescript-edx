@@ -16,7 +16,11 @@ export interface DisplayValue {
 
 export class Die {
     // public static DieValue = DieValue;
-    public static randomRoll(min: number = 1, max: number = 6, randomFn: () => number): number {
+    public static randomRoll(
+        min: number = 1,
+        max: number = 6,
+        randomFn: () => number
+    ): number {
         // let c = new Chance();
         min = Math.ceil(min);
         max = Math.floor(max);
