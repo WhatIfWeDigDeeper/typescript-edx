@@ -18,6 +18,12 @@ Variables use const whereas properties use readonly
 
 "Object literals get special treatment and undergo excess property checking when assigning them to other variables, or passing them as arguments. If an object literal has any properties that the "target type" doesn't have, you'll get an error."
 
+```typescript
+interface ObjectWithProps {
+    [propName: string]: any;
+}
+```
+
 ### String Index Signature
 
 To get around the object literal restriction, you may use a string index property.
